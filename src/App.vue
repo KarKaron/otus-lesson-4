@@ -1,6 +1,8 @@
 <template lang="pug">
-  .bg-white.h-lvh.flex.items-center.justify-center
-    .max-w-7xl.px-4.py-16
+  .bg-white
+    .mx-auto.max-w-2xl.px-4.py-16(
+      class="sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+    )
       layout-header( title="Products" )
       layout-main( v-if="isLoaded" :data="filteredProducts" )
       .grid.grid-cols-4.gap-x-6.gap-y-10( v-else )

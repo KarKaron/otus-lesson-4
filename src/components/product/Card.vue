@@ -1,5 +1,7 @@
 <template lang="pug">
-  .aspect-h-1.aspect-w-1.w-full.overflow-hidden.rounded-lg.bg-gray-200
+  .aspect-square.w-full.rounded-lg.bg-gray-200.object-cover.overflow-hidden(
+    class="group-hover:opacity-75 xl:aspect-[7/8]"
+  )
     img.size-full.object-cover.object-center(
       :src="data.images[0]"
       :alt="data.title"
