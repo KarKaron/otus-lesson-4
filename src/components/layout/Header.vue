@@ -29,6 +29,7 @@
 
           additionally-navigation(
             :navigation="navigation"
+            :products="products"
           )
 </template>
 
@@ -40,7 +41,7 @@ import Logo from "./header/Logo.vue";
 import PopoverCategories from "./header/PopoverCategories.vue";
 import AdditionallyNavigation from "./header/AdditionallyNavigation.vue";
 
-defineProps(["data"]);
+defineProps(["data", "products"]);
 
 const navigation = {
   categories: [

@@ -13,8 +13,11 @@
           aria-hidden="true"
         )
 
-    .flex( class="lg:ml-6" )
-      a.p-2.text-gray-400( href="#" class="hover:text-gray-500")
+    .flex.cursor-pointer(
+      class="lg:ml-6"
+      @click="isSearchOpen=true"
+    )
+      .p-2.text-gray-400( class="hover:text-gray-500")
         span.sr-only Search
         magnifying-glass-icon.size-6( aria-hidden="true" )
 
@@ -28,13 +31,23 @@
           class="group-hover:text-gray-800"
         ) 0
         span.sr-only items in cart, view bag
+
+  popover-search(
+    :is-open="isSearchOpen"
+    :products="products"
+    @close="isSearchOpen = false"
+  )
 </template>
 
 <script setup>
+import { ref } from "vue";
 import {
   MagnifyingGlassIcon,
   ShoppingBagIcon
 } from "@heroicons/vue/24/outline";
+import PopoverSearch from "./PopoverSeacrh.vue";
 
-defineProps(["navigation"]);
+defineProps(["navigation", "products"]);
+
+const isSearchOpen = ref(false);
 </script>

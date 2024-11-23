@@ -1,6 +1,9 @@
 <template lang="pug">
-  .bg-white
-    layout-header( :data="categories" )
+  .bg-white.min-h-screen
+    layout-header(
+      :data="categories"
+      :products="products"
+    )
     .mx-auto.max-w-2xl.px-4.py-16(
       class="sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
     )
@@ -12,7 +15,7 @@
       )
       skeleton(
         v-else
-        :limit="LIMIT_PRODUCT"
+        :limit="LIMIT_ON_PAGE"
       )
 </template>
 
@@ -22,7 +25,7 @@ import LayoutHeader from "~/components/layout/Header.vue";
 import LayoutMain from "~/components/layout/Main.vue";
 import Skeleton from "~/components/common/skeleton/Skeleton.vue";
 
-const LIMIT_PRODUCT = 8;
+const LIMIT_ON_PAGE = 8;
 const PATH_PRODUCTS = "https://api.escuelajs.co/api/v1/products";
 const PATH_CATEGORIES = "https://api.escuelajs.co/api/v1/categories";
 
@@ -31,7 +34,7 @@ const products = ref([]);
 const categories = ref([]);
 
 const filteredProducts = computed(() =>
-  products.value.splice(0, LIMIT_PRODUCT)
+  products.value.splice(0, LIMIT_ON_PAGE)
 );
 
 onBeforeMount(() => {
@@ -49,6 +52,8 @@ async function fetchProduct() {
 
 async function fetchCategories() {
   const response = await fetch(PATH_CATEGORIES);
-  categories.value = (await response.json()).filter(item => !item.image.includes("any"));
+  categories.value = (await response.json())
+    .splice(0, LIMIT_ON_PAGE)
+    .filter((item) => !item.image.includes("any"));
 }
 </script>
