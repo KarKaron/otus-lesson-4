@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onBeforeMount } from "vue";
+import { ref, computed, onBeforeMount, inject } from "vue";
 import LayoutHeader from "~/components/layout/Header.vue";
 import LayoutMain from "~/components/layout/Main.vue";
 import Skeleton from "~/components/common/Skeleton.vue";
@@ -28,6 +28,8 @@ import Skeleton from "~/components/common/Skeleton.vue";
 const LIMIT_ON_PAGE = 8;
 const PATH_PRODUCTS = "https://api.escuelajs.co/api/v1/products";
 const PATH_CATEGORIES = "https://api.escuelajs.co/api/v1/categories";
+
+const axios = inject("axios"); // inject axios
 
 const isLoaded = ref(false);
 const products = ref([]);
@@ -49,18 +51,17 @@ async function fetchProduct() {
     const response = await fetch(PATH_PRODUCTS);
     products.value = await response.json();
     isLoaded.value = true;
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 }
 
 async function fetchCategories() {
   try {
-    const response = await fetch(PATH_CATEGORIES);
-    categories.value = (await response.json())
+    categories.value = (await axios.get(PATH_CATEGORIES)).data
       .splice(0, LIMIT_ON_PAGE)
       .filter((item) => !item.image.includes("any"));
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 }
