@@ -20,10 +20,11 @@
     .mt-4.card( v-if="search && searchProducts.length" )
       DataView(
         :value="searchProducts"
-        paginator :rows="6"
+        paginator
+        :rows="6"
       )
         template( #list="slotProps" )
-          .grid.grid-cols-3.gap-x-6.gap-y-10.mb-4
+          .grid.grid-cols-1.gap-x-6.gap-y-10.mb-4( class="sm:grid-cols-2 lg:grid-cols-3" )
             a.group(
               v-for="product in slotProps.items"
               :key="product.id"
