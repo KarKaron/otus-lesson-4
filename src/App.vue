@@ -1,5 +1,7 @@
 <template lang="pug">
   .bg-white.min-h-screen
+    toast
+
     layout-header(
       :data="categories"
       :products="products"
@@ -21,6 +23,7 @@
 
 <script setup>
 import { ref, computed, onBeforeMount, inject } from "vue";
+import Toast from "primevue/toast";
 import LayoutHeader from "~/components/layout/Header.vue";
 import LayoutMain from "~/components/layout/Main.vue";
 import Skeleton from "~/components/common/Skeleton.vue";
@@ -29,11 +32,10 @@ const LIMIT_ON_PAGE = 8;
 const PATH_PRODUCTS = "https://api.escuelajs.co/api/v1/products";
 const PATH_CATEGORIES = "https://api.escuelajs.co/api/v1/categories";
 
-const axios = inject("axios"); // inject axios
-
 const isLoaded = ref(false);
 const products = ref([]);
 const categories = ref([]);
+const axios = inject("axios"); // inject axios
 
 const filteredProducts = computed(() =>
   products.value.splice(0, LIMIT_ON_PAGE)

@@ -17,29 +17,23 @@
           )
             span.absolute( class="-inset-0.5" )
             span.sr-only Open menu
-            bars-3-icon.size-6( aria-hidden="true" )
+            .flex.items-center.justify-center.pi.pi-bars(
+              style="font-size: 1.2rem"
+              aria-hidden="true"
+            )
 
-          logo
-
-          popover-categories(
+          header-navigation(
             :data="data"
             :navigation="navigation"
-            :open="open"
-          )
-
-          additionally-navigation(
-            :navigation="navigation"
             :products="products"
+            :open="open"
           )
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { Bars3Icon } from "@heroicons/vue/24/outline";
 import Mobile from "./header/Mobile.vue";
-import Logo from "./header/Logo.vue";
-import PopoverCategories from "./header/PopoverCategories.vue";
-import AdditionallyNavigation from "./header/AdditionallyNavigation.vue";
+import HeaderNavigation from "./header/Navigation.vue";
 
 defineProps(["data", "products"]);
 

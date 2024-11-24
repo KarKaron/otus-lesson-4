@@ -1,10 +1,10 @@
 <template lang="pug">
   Dialog(
     :visible="isOpen"
-    :modal="true"
     :show-header="false"
     :draggable="false"
     dismissable-mask
+    modal
     position="top"
     :style="{ width: '35rem' }"
     @update:visible="emit('close')"
