@@ -48,7 +48,7 @@
                         :alt="item.name"
                         class="group-hover:opacity-75"
                       )
-                      span.absolute.inset-0.z-10( aria-hidden="true" ) {{ item.name }}
+                      .mt-2.pb-2( aria-hidden="true" ) {{ item.name }}
 
       a.flex.items-center.text-sm.font-medium.text-gray-700(
         v-for="page in navigation.pages"

@@ -37,7 +37,10 @@
               )
                 span.absolute( class="-inset-0.5" )
                 span.sr-only Close menu
-                x-mark-icon.size-6( aria-hidden="true" )
+                .flex.items-center.justify-center.pi.pi-times(
+                  style="font-size: 1.2rem"
+                  aria-hidden="true"
+                )
 
             mobile-dialog-panel-tabs(
               :navigation="navigation"
@@ -52,7 +55,6 @@ import {
   Dialog as MobileDialog,
   DialogPanel as MobileDialogPanel
 } from "@headlessui/vue";
-import { XMarkIcon } from "@heroicons/vue/24/outline";
 import MobileDialogPanelTabs from "./mobile/DialogPanelTabs.vue";
 
 defineProps(["data", "navigation", "open"]);

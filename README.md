@@ -1,1 +1,1 @@
-Otus lerning
+Otus study home work
